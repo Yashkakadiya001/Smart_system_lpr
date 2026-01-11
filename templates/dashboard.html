@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Parking Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        .granted {
+            color: green;
+            font-weight: bold;
+        }
+        .denied {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Smart Parking Vehicle Logs</h1>
+
+<table>
+    <tr>
+        <th>Time</th>
+        <th>Vehicle Number</th>
+        <th>Status</th>
+    </tr>
+
+    {% for log in logs %}
+    <tr>
+        <td>{{ log.time }}</td>
+        <td>{{ log.plate }}</td>
+        <td class="{{ 'granted' if 'GRANTED' in log.status else 'denied' }}">
+            {{ log.status }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
